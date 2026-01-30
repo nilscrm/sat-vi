@@ -42,10 +42,7 @@ pub mod Clause {
 
 pub mod Literal {
   pub fn new(int: I32) -> Literal {
-    if int == +0 {
-      debug::error("0 is not a valid literal");
-      return unsafe::eraser;
-    }
+    assert int != +0 else { debug::error("0 is not a valid literal") }
     Literal(int)
   }
 
