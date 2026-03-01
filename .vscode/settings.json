@@ -6,7 +6,7 @@
     "editor.defaultFormatter": "dprint.dprint"
   },
   "vine.entrypoints": [
-    "sat/sat.vi",
+    "sat",
     "sat/main.vi",
   ],
   "rust-analyzer.check.command": "clippy",

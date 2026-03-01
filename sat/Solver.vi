@@ -110,10 +110,9 @@ pub mod Solver {
     }
     Formula(new_clauses)
   }
-
-  pub impl show: Show[Formula];
 }
 
+#[impl(Show)]
 pub struct* Model(pub Map[N32, Bool]);
 
 pub mod Model {
@@ -123,5 +122,7 @@ pub mod Model {
     self!.insert(variable, value);
   }
 
-  pub impl show: Show[Model];
+  pub fn .remove(&self: &Model, &variable: &N32) {
+    self!.remove(&variable);
+  }
 }

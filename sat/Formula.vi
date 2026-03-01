@@ -5,7 +5,11 @@ use #root::ops::comparison::Eq;
 use Solver::Model;
 
 pub struct* Literal(I32);
+
+#[impl(Show)]
 pub struct* Clause(pub List[Literal]);
+
+#[impl(Show)]
 pub struct* Formula(pub List[Clause]);
 
 pub mod Formula {
@@ -16,8 +20,6 @@ pub mod Formula {
   pub fn .is_empty(&self: &Formula) -> Bool {
     self!.len() == 0
   }
-
-  pub impl show: Show[Formula];
 }
 
 pub mod Clause {
@@ -36,8 +38,6 @@ pub mod Clause {
   pub fn .first_literal(&self: &Clause) -> Option[Literal] {
     self!.get(0)
   }
-
-  pub impl show: Show[Clause];
 }
 
 pub mod Literal {
