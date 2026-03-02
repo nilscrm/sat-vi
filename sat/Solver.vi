@@ -41,18 +41,20 @@ pub mod Solver {
       return Some(model);
     }
 
+    let branch_variable = branch_literal.variable();
+
     let pos_formula = formula.assign(branch_literal);
-    let new_solver = self.fork();
-    new_solver.model.insert(branch_literal.variable(), branch_literal.is_positive());
-    if new_solver.solve_(pos_formula) is Some(solution) {
+    self.model.insert(branch_variable, branch_literal.is_positive());
+    if self.solve_(pos_formula) is Some(solution) {
       return Some(solution);
     }
 
     let neg_formula = formula.assign(branch_literal.negated());
-    new_solver.model.insert(branch_literal.variable(), !branch_literal.is_positive());
-    if new_solver.solve_(neg_formula) is Some(solution) {
+    self.model.insert(branch_variable, !branch_literal.is_positive());
+    if self.solve_(neg_formula) is Some(solution) {
       return Some(solution);
     }
+    self.model.remove(&branch_variable);
 
     None()
   }
